@@ -19,27 +19,19 @@ resource "restapi_object" "resource_provider" {
 }
 
 module "accounts" {
-  source = "../account"
+  source = "../resource_provider_account"
   for_each = var.accounts
+
+  depends_on = [ restapi_object.resource_provider ]
 
   name = each.key
   email = each.value.email
   allocations = each.value.allocations
+  resource_provider_id_url = resource.restapi_object.resource_provider.api_data.url
+  openstack_project_id = each.value.openstack_project_id
 
   providers = {
     restapi.coral = restapi.coral
   }
-}
-
-resource "restapi_object" "resource_provider_accounts" {
-    provider       = restapi.coral
-
-    for_each = var.accounts
-    path           = "/resource_provider_account"
-    data =  jsonencode({
-        "account": module.accounts[each.key].id_url,
-        "provider": resource.restapi_object.resource_provider.api_data.url,
-        "project_id": each.value.openstack_project_id
-    })
 }
 

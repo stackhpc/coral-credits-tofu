@@ -22,8 +22,23 @@ output "id_url" {
     value = resource.restapi_object.account.api_data.url
 }
 
+resource "restapi_object" "resource_provider_account" {
+    provider       = restapi.coral
+
+    depends_on = [ restapi_object.account ]
+
+    path           = "/resource_provider_account"
+    data =  jsonencode({
+        "account": resource.restapi_object.account.api_data.url,
+        "provider": var.resource_provider_id_url,
+        "project_id": var.openstack_project_id
+    })
+}
+
 module "allocations" {
     source = "../allocation"
+
+    depends_on = [ restapi_object.resource_provider_account ]
 
     for_each = var.allocations
 

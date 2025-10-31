@@ -26,6 +26,7 @@ provider "restapi" {
 
 module "resource_provider_accounts" {
   source   = "./resource-provider"
+  depends_on = [ restapi_object.resource_classes ]
   for_each = var.resource_providers
   name     = each.key
   email    = each.value.email
