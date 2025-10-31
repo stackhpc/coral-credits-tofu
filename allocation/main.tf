@@ -23,6 +23,11 @@ resource "restapi_object" "allocation" {
 resource "restapi_object" "allocation_resources" {
     provider = restapi.coral
 
+    for_each = var.resources
     path = "/allocation/${resource.restapi_object.allocation.api_data.id}/resources"
-    data = jsonencode(var.resources)
+    data = jsonencode(
+      {
+        "${each.key}": each.value
+      }
+    )
 }
