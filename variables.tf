@@ -20,5 +20,5 @@ variable "resource_providers" {
 
 variable "resource_classes" {
   type    = list(string)
-  default = ["VCPU", "RAM_MB", "DISK_GB"]
+  default = ["VCPU", "MEMORY_MB", "DISK_GB"]
 }
