@@ -10,12 +10,10 @@ variable "info_url" {
     type = string
 }
 
+variable "allocations" {
+    type = map(any) 
+}
+
 variable "accounts" {
-    type = map(any)
-    description = <<-EOF
-        name: string
-        email: string
-        openstack_project_id: string
-        allocations: map(any)
-    EOF
+    type = list(map(string))
 }

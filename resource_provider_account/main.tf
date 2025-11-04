@@ -18,10 +18,6 @@ resource "restapi_object" "account" {
     })
 }
 
-output "id_url" {
-    value = resource.restapi_object.account.api_data.url
-}
-
 resource "restapi_object" "resource_provider_account" {
     provider       = restapi.coral
 
@@ -40,7 +36,7 @@ module "allocations" {
 
     depends_on = [ restapi_object.resource_provider_account ]
 
-    for_each = var.allocations
+    for_each = {for a in var.allocations: a.name => a}
 
     name = each.key
     start_date = each.value.start_date

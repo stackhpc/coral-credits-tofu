@@ -8,14 +8,24 @@ variable "auth_token" {
   type = string
 }
 
-variable "resource_providers" {
-  type        = map(any)
-  description = <<-EOF
-        name: string
-        email: string
-        info_url: string
-        accounts: [{ name: string, email: string }]
-    EOF
+variable "resource_provider_name" {
+  type = string
+}
+
+variable "resource_provider_email" {
+  type = string
+}
+
+variable "resource_provider_info_url" {
+  type = string
+}
+
+variable "allocations" {
+  type = map(any)
+}
+
+variable "accounts" {
+  type = list(map(string))
 }
 
 variable "resource_classes" {

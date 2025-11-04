@@ -7,7 +7,7 @@ variable "email" {
 }
 
 variable "allocations" {
-    type = map(any)
+    type = list(any)
 }
 
 variable "resource_provider_id_url" {

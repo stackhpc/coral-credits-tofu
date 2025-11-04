@@ -27,11 +27,12 @@ provider "restapi" {
 module "resource_provider_accounts" {
   source   = "./resource-provider"
   depends_on = [ restapi_object.resource_classes ]
-  for_each = var.resource_providers
-  name     = each.key
-  email    = each.value.email
-  info_url = each.value.info_url
-  accounts = each.value.accounts
+
+  name     = var.resource_provider_name
+  email    = var.resource_provider_email
+  info_url = var.resource_provider_info_url
+  accounts = var.accounts
+  allocations = var.allocations
 
   providers = {
     restapi.coral = restapi.coral
