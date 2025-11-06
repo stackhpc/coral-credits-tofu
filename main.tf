@@ -7,23 +7,6 @@ terraform {
   }
 }
 
-provider "restapi" {
-  alias                 = "coral"
-  uri                   = var.coral_uri
-  debug                 = false
-  write_returns_object  = true
-  create_returns_object = true
-  #create_method       = "POST"
-  #update_method       = "PUT"
-  #destroy_method      = "DELETE"
-  #read_method          = "PATCH"
-  id_attribute = "id"
-  headers = {
-    "Content-Type" = "application/json"
-    Authorization  = "Bearer ${var.auth_token}"
-  }
-}
-
 module "resource_provider_accounts" {
   source   = "./resource-provider"
   depends_on = [ restapi_object.resource_classes ]
