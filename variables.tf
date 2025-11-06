@@ -1,13 +1,3 @@
-variable "coral_uri" {
-  type = string
-}
-
-# TODO: should we be setting the coral admin password instead and fetching a new token for
-# each run? Depends how long lived the tokens are
-variable "auth_token" {
-  type = string
-}
-
 variable "resource_provider_name" {
   type = string
 }
