@@ -7,9 +7,9 @@ return 1
 
 fi
 
-if [ -z "${CORAL_ENDPOINT}" ]; then
+if [ -z "${TF_VAR_coral_uri}" ]; then
 
-echo "Must set CORAL_ENDPOINT environment variable to your Coral server's endpoint e.g credits.apps.<azimuth-domain>"
+echo "Must set TF_VAR_coral_uri environment variable to your Coral server's endpoint e.g credits.apps.<azimuth-domain>"
 
 return 1
 
@@ -20,4 +20,4 @@ export TF_VAR_auth_token=$(curl -s -X POST -H "Content-Type: application/json" -
         \"username\": \"admin\", 
         \"password\": \"$CORAL_ADMIN_PASSWORD\"
     }" \
-    http://${CORAL_ENDPOINT}/api-token-auth/ | jq -r '.token')
+    ${TF_VAR_coral_uri}/api-token-auth/ | jq -r '.token')
