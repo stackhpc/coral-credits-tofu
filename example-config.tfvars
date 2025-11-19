@@ -26,17 +26,17 @@ allocations = {
       {
         account_email = "testaccount1@example.com"
         resources = {
-          VCPU    = 40000
-          MEMORY_MB  = 4423680
-          DISK_GB = 108000
+          VCPU      = 40000
+          MEMORY_MB = 4423680
+          DISK_GB   = 108000
         }
       },
       {
         account_email = "testaccount2@example.com"
         resources = {
-          VCPU    = 20000
-          MEMORY_MB  = 2000000
-          DISK_GB = 200000
+          VCPU      = 20000
+          MEMORY_MB = 2000000
+          DISK_GB   = 200000
         }
       }
     ]
@@ -48,9 +48,9 @@ allocations = {
       {
         account_email = "testaccount1@example.com"
         resources = {
-          VCPU    = 80000
-          MEMORY_MB  = 8000000
-          DISK_GB = 300000
+          VCPU      = 80000
+          MEMORY_MB = 8000000
+          DISK_GB   = 300000
         }
       }
     ]

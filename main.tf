@@ -1,21 +1,21 @@
 terraform {
   required_providers {
     restapi = {
-      source  = "Mastercard/restapi"
-      version = "1.20.0"
-      configuration_aliases = [ restapi.coral ]
+      source                = "Mastercard/restapi"
+      version               = "1.20.0"
+      configuration_aliases = [restapi.coral]
     }
   }
 }
 
 module "resource_provider_accounts" {
-  source   = "./resource-provider"
-  depends_on = [ restapi_object.resource_classes ]
+  source     = "./resource-provider"
+  depends_on = [restapi_object.resource_classes]
 
-  name     = var.resource_provider_name
-  email    = var.resource_provider_email
-  info_url = var.resource_provider_info_url
-  accounts = var.accounts
+  name        = var.resource_provider_name
+  email       = var.resource_provider_email
+  info_url    = var.resource_provider_info_url
+  accounts    = var.accounts
   allocations = var.allocations
 
   providers = {
@@ -31,4 +31,7 @@ resource "restapi_object" "resource_classes" {
   data = jsonencode({
     "name" : each.value
   })
+  lifecycle {
+    prevent_destroy = true
+  }
 }
